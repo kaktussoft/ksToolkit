@@ -1,13 +1,13 @@
-#KaktusSoft Toolkit (javascript library)
-##function CreateOutput
+# KaktusSoft Toolkit (javascript library)
+## function CreateOutput
 Documentation can be found using for details see https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
-##funcion GroupBy
+## function GroupBy
 Helper function for CrerateOutput. See CrerateOutput documention.
-##function transferData
+## function transferData
 See source code. It is self-explaining.
-##function processResponsePromise
+## function processResponsePromise
 See source code. It is self-explaining.
-##function getServerDataMakeReportPutInElem
+## function getServerDataMakeReportPutInElem
 See source code. It is self-explaining.
-##function htmlSanitize
+## function htmlSanitize
 See source code. It is self-explaining.
