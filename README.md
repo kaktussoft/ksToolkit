@@ -1,6 +1,6 @@
 # KaktusSoft Toolkit (javascript library)
 ## function CreateOutput
-Documentation can be found using for details see https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
+Documentation can be found using https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 ## function GroupBy
 Helper function for CrerateOutput. See CrerateOutput documention.
 ## function transferData
