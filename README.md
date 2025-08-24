@@ -2,7 +2,7 @@
 ## function CreateOutput
 Documentation can be found on https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 ## function GroupBy
-Helper function for CrerateOutput. See CreateOutput documention.
+Helper function for CrerateOutput. See CreateOutput documentation.
 ## function transferData
 See source code. It is self-explanatory.
 ## function processResponsePromise
