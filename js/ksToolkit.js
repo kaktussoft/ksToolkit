@@ -80,7 +80,7 @@ export const processResponsePromise = ([response, err]) => {
         throw err;
     }
     if (!response.ok) {
-        throw Error(response.statusText);
+        throw new Error(response.statusText);
     }
     return response.json();
 };
@@ -102,3 +102,4 @@ export const navEvent = (e, navEventListener) => {
     navEventListener(e);
 };
 export const htmlSanitize = elem => elem.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
