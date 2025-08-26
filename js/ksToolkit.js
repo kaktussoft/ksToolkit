@@ -94,5 +94,11 @@ export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem
     const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise);
     Elem.innerHTML = createOutput(reportCfg)(data) || 'Geen records gevonden!';
 };
+export const navEvent = (e, navEventListener) => {
+    e.preventDefault();
+    // find active link in the navigation bar and make it NOT active anymore
+    document.querySelector('.navbar-nav .nav-link.active')?.classList.remove('active');
+    e.currentTarget.classList.add('active');
+    navEventListener(e);
+};
 export const htmlSanitize = elem => elem.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
