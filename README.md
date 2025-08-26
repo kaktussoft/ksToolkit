@@ -9,5 +9,7 @@ See source code. It is self-explanatory.
 See source code. It is self-explanatory.
 ## function getServerDataMakeReportPutInElem
 See source code. It is self-explanatory.
+## function navEvent
+See source code. It is self-explanatory.
 ## function htmlSanitize
 See source code. It is self-explanatory.
