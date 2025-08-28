@@ -102,5 +102,3 @@ export const navEvent = (e, navEventListener) => {
     navEventListener(e);
 };
 export const htmlSanitize = elem => elem.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-
