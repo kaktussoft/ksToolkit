@@ -91,8 +91,8 @@ export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem
                                             Loading...
                                         </button>`;
     }
-    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise);
-    Elem.innerHTML = createOutput(reportCfg)(data) || 'Geen records gevonden!';
+    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise).then(createOutput(reportCfg)).then(output => (output || 'Geen records gevonden!'));
+    Elem.innerHTML = data;
 };
 export const navEvent = (e, navEventListener) => {
     e.preventDefault();
@@ -102,4 +102,5 @@ export const navEvent = (e, navEventListener) => {
     navEventListener(e);
 };
 export const htmlSanitize = elem => elem.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
 
