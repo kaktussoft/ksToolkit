@@ -44,7 +44,7 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
         }
         return acc;
     }, '');
-    return report;
+    return report || 'Geen records gevonden!';
 };
 // helper function for reportDefinition compare function
 export const GroupBy = (fields, level = 1) => (prv, cur) => {
@@ -91,7 +91,7 @@ export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem
                                             Loading...
                                         </button>`;
     }
-    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise).then(createOutput(reportCfg)).then(output => output || 'Geen records gevonden!');
+    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise).then(createOutput(reportCfg)).then(output => output);
     Elem.innerHTML = data;
 };
 export const navEvent = (e, navEventListener) => {
@@ -102,3 +102,4 @@ export const navEvent = (e, navEventListener) => {
     navEventListener(e);
 };
 export const htmlSanitize = elem => elem.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
