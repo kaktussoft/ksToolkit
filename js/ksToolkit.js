@@ -91,7 +91,7 @@ export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem
                                             Loading...
                                         </button>`;
     }
-    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise).then(createOutput(reportCfg)).then(output => (output || 'Geen records gevonden!'));
+    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise).then(createOutput(reportCfg)).then(output => output || 'Geen records gevonden!');
     Elem.innerHTML = data;
 };
 export const navEvent = (e, navEventListener) => {
