@@ -51,7 +51,7 @@ export const GroupBy = (fields, level = 1) => (prv, cur) => {
     const index = fields.findIndex(field => cur[field] !== prv[field]);
     return (index === -1) ? -1 : index + level;
 };
-export const transferData = async (url, mode, data = '', requestOptions = {}) => {
+export const transferData = async (url, mode = 'GET', data = '', requestOptions = {}) => {
     // use 'new URLSearchParams(data)' to convert plain javascript object to data we want
     // use 'new FormData(formElem)' to convert form to data we want (only method POST)
     // use 'new URLSearchParams(new FormData(formElem))' to convert form to data we want (method GET/POST)
@@ -102,3 +102,4 @@ export const navEvent = (e, navEventListener) => {
     navEventListener(e);
 };
 export const htmlSanitize = elem => elem.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
