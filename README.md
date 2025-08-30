@@ -15,3 +15,5 @@ See source code. It is kind of executing transferData -> processResponsePromise 
 See source code. It is self-explanatory.
 ## function htmlSanitize
 See source code. It is self-explanatory.
+## function embedFile
+See source code. It is self-explanatory.
