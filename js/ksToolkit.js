@@ -102,4 +102,10 @@ export const navEvent = (e, navEventListener) => {
     navEventListener(e);
 };
 export const htmlSanitize = elem => elem.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
+export const embedFile = async file => {
+    const response = await fetch(file);
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    return response.text();
+};
