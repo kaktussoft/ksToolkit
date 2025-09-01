@@ -1,0 +1,65 @@
+#clubnaam {
+    font-size: clamp(1.5em, 3vw, 4em);
+    font-weight: bold;
+    color: red;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, .15);
+}
+
+.table-nonfluid {
+    width: auto !important;
+}
+
+span.spelerLink {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+th.vertical-text {
+    transform: rotate(180deg);
+    padding-right: 0;
+    writing-mode: vertical-lr;
+}
+
+tr.border-top-color_red td {
+    border-top-color: red;
+}
+
+body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+.bootstrap-select .dropdown-item.active, .dropdown-item:active {
+    background-color: #17a2b8 !important
+}
+
+@media (max-width: 900px) {
+    .fontsmall {
+        font-size: 0.8rem;
+    }
+}
+
+@media (hover: hover) {
+    @media not print {
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #bbbb00;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(200, 200, 0, .7);
+        }
+    }
+}
+
+@media print {
+    #SpelerLijst {
+        display: none;
+    }
+
+    .table td, .table th {
+        background-color: unset !important
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biljartvereniging 't Waeghje</title>
+    <link rel="icon" type="image/png" href="biljart.png">
+
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- jQuery and bootstrap JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <!-- csscode special for this page -->
+    <link rel="stylesheet" href="style.css">
+    <!-- js code special for this project -->
+    <script type="module">
+        // javascript code made by Ron Clarijs (ron.clarijs@gmail.com), visit https://www.kaktussoft.nl
+        import * as kstoolkit from '//cdn.jsdelivr.net/gh/kaktussoft/ksToolkit@latest/js/ksToolkit.js';
+        import * as dbdata from './js/data.js';
+
+        kstoolkit.embedFile('klant/koptekst.txt').then(text => { document.getElementById('koptekst').innerHTML = text; });
+        const fetchJSON = (...arg) => kstoolkit.transferData(...arg).then(kstoolkit.processResponsePromise);
+        // merge multiple data arrays and re-sort. Be sure NOT to select same 'rooster/tafelnaam' combination multiple times!
+        const tespelenExtra = Promise.all([
+            fetchJSON('php/tespelen.php?tafel=Klein&rooster=3'),
+            fetchJSON('php/tespelen.php?tafel=Groot&rooster=2')
+        ])
+            // Because we have an array of 2 promises, we have to 'flatten' the output. Also sort again afterwards.
+            .then(promises => promises.flat(1).sort((a, b) => (a.Rooster - b.Rooster) || a.TafelNaam.localeCompare(b.TafelNaam) || a.SpelersNaam.localeCompare(b.SpelersNaam)));
+        Promise.all([
+            fetchJSON('php/stand.php?tafel=Klein,Groot&rooster=2,3').then(kstoolkit.createOutput(dbdata.reportStand)),
+            fetchJSON('php/tespelen_matrix.php?tafel=Klein').then(kstoolkit.createOutput(dbdata.reportMatrix)),
+            fetchJSON('php/tespelen.php?tafel=Groot&rooster=1,2').then(kstoolkit.createOutput(dbdata.reportNogTeSpelen)),
+            fetchJSON('php/spelers_details.php?speler=Donny Daam&tafel=Klein&rooster=2,3').then(kstoolkit.createOutput(dbdata.reportSpelersDetails)),
+            '<div style="width: 100%; height: 6px; background: repeating-linear-gradient(45deg, #17a2b8, #17a2b8 10px, #ffc107 10px, #ffc107 20px)"></div>',
+            tespelenExtra.then(kstoolkit.createOutput(dbdata.reportNogTeSpelen))
+        ])
+            .then(promises => { document.getElementById('rpt_items').innerHTML = promises.join(''); });
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="koptekst" style="page-break-after:avoid;page-break-inside:avoid;"></div>
+        <div id="rpt_items"></div>
+        <div>
+            <b>Gemaakt door <a href="http://www.kaktussoft.nl/">www.kaktussoft.nl</a></b>
+        </div>
+    </div>
+</body>
+
+</html>

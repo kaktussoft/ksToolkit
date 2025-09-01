@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biljartvereniging 't Waeghje</title>
+    <link rel="icon" type="image/png" href="biljart.png">
+
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- jQuery and bootstrap JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <!-- csscode special for this page -->
+    <link rel="stylesheet" href="style.css">
+    <!-- js code special for this project -->
+    <script type="module">
+        // javascript code made by Ron Clarijs (ron.clarijs@gmail.com), visit https://www.kaktussoft.nl
+        import * as kstoolkit from '//cdn.jsdelivr.net/gh/kaktussoft/ksToolkit@latest/js/ksToolkit.js';
+        import * as dbdata from './js/data.js';
+
+        const fetchJSON = (...arg) => kstoolkit.transferData(...arg).then(kstoolkit.processResponsePromise);
+        kstoolkit.embedFile('klant/koptekst.txt').then(text => { document.getElementById('koptekst').innerHTML = text; });
+        const reportFilter = record => record.TafelNaam === 'Groot' && ['2', '3'].includes(record.Rooster);
+        // All record: const reportFilter = record => true
+        // Only table 'Klein' period 2: const reportFilter = record => record.TafelNaam === 'Klein' && record.Rooster === '2'
+        // Only table 'Groot' periods 2 and 3: const reportFilter = record => record.TafelNaam === 'Groot' && ['2', '3'].includes(record.Rooster)
+        // Filtering reportCompetitiestand by TafelNaam is not possible! Filtering by Rooster is pointless.
+        Promise.all([
+            fetchJSON('php/competitie_stand.php').then(kstoolkit.createOutput(dbdata.reportCompetitiestand)),
+            fetchJSON('php/tespelen_matrix.php').then(kstoolkit.createOutput({ ...dbdata.reportMatrix, source: data => data.filter(reportFilter) })),
+            fetchJSON('php/tespelen.php').then(kstoolkit.createOutput({ ...dbdata.reportNogTeSpelen, source: data => data.filter(reportFilter) })),
+            fetchJSON('php/spelers_details.php?speler=Allemaal').then(kstoolkit.createOutput({ ...dbdata.reportSpelersDetails, source: data => data.records.filter(reportFilter) }))
+        ])
+            .then(promises => { document.getElementById('rpt_items').innerHTML = promises.join(''); });
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="koptekst" style="page-break-after:avoid;page-break-inside:avoid;"></div>
+        <div id="rpt_items"></div>
+        <div>
+            <b>Gemaakt door <a href="http://www.kaktussoft.nl/">www.kaktussoft.nl</a></b>
+        </div>
+    </div>
+</body>
+
+</html>
