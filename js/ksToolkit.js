@@ -84,13 +84,7 @@ export const processResponsePromise = ([response, err]) => {
     }
     return response.json();
 };
-export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem, queryString = '', showLoader = true, method = 'GET') => {
-    if (showLoader) {
-        Elem.innerHTML = `<button class="btn btn-primary" type="button" disabled>
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                            Loading...
-                                        </button>`;
-    }
+export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem, queryString = '', method = 'GET') => {
     const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise).then(createOutput(reportCfg));
     Elem.innerHTML = data;
 };
@@ -109,3 +103,4 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
