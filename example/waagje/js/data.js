@@ -153,7 +153,7 @@ export const reportMatrix = {
 };
 export const reportSpelersLijst = {
     headers: ['<div id="SpelerLijst"><button type="button" class="btn btn-sm btn-primary mb-2 ks_klikbaar">Allemaal</button> '],
-    footers: ['</div>'],
+    footers: ['</div><div id="output2"></div>'],
     display: record => `<button type="button" class="btn btn-sm btn-info mb-2 ks_klikbaar">${kstoolkit.htmlSanitize(record.SpelersNaam)}</button> `
 };
 export const reportOptionSpelers = {

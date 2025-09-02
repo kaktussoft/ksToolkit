@@ -68,8 +68,6 @@ document.getElementById('nav-item-5').addEventListener('click', e => {
                         baseElement.querySelector('#output2'), new URLSearchParams({ speler: e.target.textContent }));
                 }
             });
-            // add container for Partij Details
-            baseElement.insertAdjacentHTML('beforeend', '<div id="output2"></div>');
             if (isFirstRun) {
                 clickedPlayer = urlParams.get('speler');
             }
@@ -164,4 +162,3 @@ document.getElementById('nav-item-9').addEventListener('click', e => {
 });
 document.getElementById(urlParams.get('optie') ?? 'nav-item-1')?.click();
 document.getElementById('koptekst').innerHTML = await kstoolkit.embedFile('klant/koptekst.txt');
-
