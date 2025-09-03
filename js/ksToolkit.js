@@ -26,18 +26,19 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
                 // Header or Footer functions: separator will be invoked with third argument 0 if this is header/footer belonging to groupLevel.
                 // third argument will be 1 for the next header/footer that is triggered automatically. Possibly there are more
                 // headers/footers... they get 2, 3, and so on as third argument
+                // compute and add last footer up to and including grouplevel-footer
                 for (let i = footers.length - 1; i >= groupLevel; i--) {
                     acc += generateSeparator(previousRecord, footers[i], i - groupLevel);
                 }
             }
-            // header begins at level groupLevel
+            // compute and add grouplevel-header up to and including last header
             for (let i = groupLevel; i < headers.length; i++) {
                 acc += generateSeparator(currentRecord, headers[i], i - groupLevel);
             }
         }
         acc += display(currentRecord, objWork);
-        // if last element, display all footers. Of course in reverse order
         if (isLastRecord) {
+            // compute and add last footer up to and including footer 0
             for (let i = footers.length - 1; i >= 0; i--) {
                 acc += generateSeparator(currentRecord, footers[i], i);
             }
@@ -103,4 +104,5 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
 
