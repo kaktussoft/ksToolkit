@@ -21,12 +21,11 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
         const isNewGroup = groupLevel !== -1;
         if (isNewGroup) {
             // only display footer if not first record
-            // if so, footer begins at level groupLevel. Of course in reverse order
             if (!isFirstRecord) {
                 // Header or Footer functions: separator will be invoked with third argument 0 if this is header/footer belonging to groupLevel.
                 // third argument will be 1 for the next header/footer that is triggered automatically. Possibly there are more
                 // headers/footers... they get 2, 3, and so on as third argument
-                // compute and add last footer up to and including grouplevel-footer
+                // compute and add last footer down to and including grouplevel-footer
                 for (let i = footers.length - 1; i >= groupLevel; i--) {
                     acc += generateSeparator(previousRecord, footers[i], i - groupLevel);
                 }
@@ -38,7 +37,7 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
         }
         acc += display(currentRecord, objWork);
         if (isLastRecord) {
-            // compute and add last footer up to and including footer 0
+            // compute and add last footer down to and including footer 0
             for (let i = footers.length - 1; i >= 0; i--) {
                 acc += generateSeparator(currentRecord, footers[i], i);
             }
@@ -104,3 +103,4 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
