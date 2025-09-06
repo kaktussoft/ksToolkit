@@ -1,5 +1,6 @@
 // for details see https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 // createOutput function made by Ron Clarijs (ron.clarijs@gmail.com)
+// Localize text strings. Please translate by defining 'window.ksToolkitText' in your own javascript code
 window.ksToolkitText ??=
 {
     norecords: 'no records found!',
@@ -107,6 +108,7 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
 
 
 
