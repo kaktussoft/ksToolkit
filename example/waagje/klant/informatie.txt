@@ -1,0 +1,5 @@
+<h1>Informatie biljartvereniging 't Waeghje</h1>
+<p>Hier komt binnenkort informatie.</p>
+<div id="infotxt_1"></div>
+<div id="infotxt_2"></div>
+<div id="infotxt_3"></div>

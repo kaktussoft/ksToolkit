@@ -1,0 +1,18 @@
+<hr>
+<p><img src='klant/biljart figuur.jpg'><span style='font-size: 200%'>Winnaar 2023-2024: <b>Jan de Graaf</b></span></p>
+<hr>
+<p>Welkom op de website van biljartvereniging 't Waeghje. De biljartvereniging is vernoemd naar het café waar onze club in ............. opgericht is.
+Sinds 20..... spelen wij bij café ome Dirk in Enkhuizen.
+Wij zijn een biljartclub waar het volledig draait om de gezelligheid, maar waar de competitie hoog in het vaandel staat. Wij spelen spelsoort libre.
+Wij spelen iedere woensdag met uitzondering van de feestdagen en de zomerstop. Deze begint in juni en eindigt in september.</p>
+
+<ul>
+    <li>Aanvang 19:30</li>
+    <li>Winnaar trekstoot mag kiezen wie er begint.</li>
+    <li>Winnaar krijgt 2 punten, bij een remise krijgt ieder 1 punt.</li>
+    <li>De verliezer schrijft de volgende partij.</li>
+    <li>Bij het spelen van je moyenne dan krijg je een bonuspunt.</li>
+    <li>Indien de bal vastligt dan zal er of van acquit of van los gespeeld worden.</li>
+    <li>Bij een uitgesprongen bal volgt de acquitstoot.</li>
+    <li>Vooral veel lachen.</li>
+</ul>

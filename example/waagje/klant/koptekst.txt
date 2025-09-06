@@ -1,0 +1,3 @@
+<!-- Zet hier uw eigen informatie. Wordt getoond als koptekst op alle pagina's -->
+<div id="clubnaam">Biljartvereniging ’t Waeghje 2024-2025</div>
+
