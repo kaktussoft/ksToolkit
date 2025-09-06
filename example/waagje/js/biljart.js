@@ -2,6 +2,10 @@
 import * as kstoolkit from '//cdn.jsdelivr.net/gh/kaktussoft/ksToolkit@latest/js/ksToolkit.js';
 import * as dbdata from './data.js';
 
+window.ksToolkitText =
+{
+    norecords: 'geen records gevonden!',
+};
 let isFirstRun = true;
 const weekPlayDay = dayOfWeek => {
     // Sunday - Saturday : 0 - 6
