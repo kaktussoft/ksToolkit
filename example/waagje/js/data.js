@@ -130,7 +130,8 @@ export const reportMatrix = {
     },
     compare: defaultGrouping,
     headers:
-        ['<h1 style="page-break-after:avoid">Matrixoverzicht</h1>',
+        [
+            '<h1 style="page-break-after:avoid">Matrixoverzicht</h1>',
             record => `<h2 class="text-danger">Rooster ${record.Rooster}</h2><div style="display:flex;flex-wrap:wrap;gap:1em">`,
             (record, objWork) =>
                 `<div style="break-inside:avoid">
