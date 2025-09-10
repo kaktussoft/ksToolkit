@@ -1,10 +1,5 @@
 // for details see https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 // createOutput function made by Ron Clarijs (ron.clarijs@gmail.com)
-// Localize text strings. Please translate by defining 'window.ksToolkitText' in your own javascript code
-window.ksToolkitText ??=
-{
-    norecords: 'no records found!',
-};
 export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData => {
     // compare: compare function. (function arguments are previous record and current record).
     // display: function that displays the record (function argument is current record).
@@ -49,7 +44,7 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
         }
         return acc;
     }, '');
-    return report || window.ksToolkitText.norecords;
+    return report;
 };
 // helper function for reportDefinition compare function
 export const GroupBy = (fields, level = 1) => (prv, cur) => {
