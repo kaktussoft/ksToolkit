@@ -31,19 +31,19 @@ document.getElementById('nav-item-2').addEventListener('click', e => {
 });
 document.getElementById('nav-item-3').addEventListener('click', e => {
     kstoolkit.navEvent(e, () => {
-        kstoolkit.getServerDataMakeReportPutInElem('php/stand.php', dbdata.reportStand, baseElement)
+        kstoolkit.getServerDataMakeReportPutInElem('php/stand.php', dbdata.reportStand, baseElement);
         isFirstRun = false;
     });
 });
 document.getElementById('nav-item-4').addEventListener('click', e => {
     kstoolkit.navEvent(e, () => {
-        kstoolkit.getServerDataMakeReportPutInElem('php/tespelen.php', dbdata.reportNogTeSpelen, baseElement)
+        kstoolkit.getServerDataMakeReportPutInElem('php/tespelen.php', dbdata.reportNogTeSpelen, baseElement);
         isFirstRun = false;
     });
 });
 document.getElementById('nav-item-5').addEventListener('click', e => {
     kstoolkit.navEvent(e, () => {
-        kstoolkit.getServerDataMakeReportPutInElem('php/tespelen_matrix.php', dbdata.reportMatrix, baseElement)
+        kstoolkit.getServerDataMakeReportPutInElem('php/tespelen_matrix.php', dbdata.reportMatrix, baseElement);
         isFirstRun = false;
     });
 });
@@ -58,7 +58,7 @@ document.getElementById('nav-item-5').addEventListener('click', e => {
     });
     document.getElementById(partijUitslagen).addEventListener('click', e => {
         kstoolkit.navEvent(e, async () => {
-            await kstoolkit.getServerDataMakeReportPutInElem('php/spelers_lijst.php', dbdata.reportSpelersLijst, baseElement)
+            await kstoolkit.getServerDataMakeReportPutInElem('php/spelers_lijst.php', dbdata.reportSpelersLijst, baseElement);
             baseElement.querySelector('#SpelerLijst')?.addEventListener('click', e => {
                 if (e.target.matches('.ks_klikbaar')) {
                     // found the target. Make the pressed button class 'active'
