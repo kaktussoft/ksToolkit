@@ -8,34 +8,36 @@ export const reportCompetitiestand = {
     source: data => data.records,
     headers:
         [
-            '<h1 style="page-break-after:avoid">Competitiestand</h1><div style="display:inline-block">',
+            '<h1 style="page-break-after:avoid">Competitiestand</h1>',
             (_record, objWork) =>
-                `<table class="table table-sm table-nonfluid table-striped table-bordered table-hover" style="text-align:right">
-                    <thead class="bg-info text-white">
-                        <tr style="text-align:center">
-                            <th colspan="2" style="font-size:1.3em">Seizoen ${objWork.rawData.Seizoen}</th>
-                            ${objWork.rawData.Tafels.map(e => `<th colspan="2">Te maken<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
-                            ${objWork.rawData.Tafels.map(e => `<th colspan="2">Gespeeld<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
-                            ${objWork.rawData.Tafels.map(e => `<th colspan="2">Geschat volgend rooster<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
-                            <th colspan="2" style="font-size:1.3em">BV 't Waagje</th>
-                        </tr>
-                        <tr>
-                            <th>Pl</th><th style="text-align:left">Speler</th>
-                            ${objWork.rawData.Tafels.map(() => '<th>Moy</th><th>Car</th>').join('')}
-                            ${objWork.rawData.Tafels.map(() => '<th>Part</th><th>Pnt</th>').join('')}
-                            ${objWork.rawData.Tafels.map(() => '<th>Moy</th><th>Car</th>').join('')}
-                            <th>Part</th><th>Pnt</th>
-                        </tr>
-                    </thead>
-                    <tbody>`
+                `<div style="display:inline-block">
+                    <table class="table table-sm table-nonfluid table-striped table-bordered table-hover" style="text-align:right">
+                        <thead class="bg-info text-white">
+                            <tr style="text-align:center">
+                                <th colspan="2" style="font-size:1.3em">Seizoen ${objWork.rawData.Seizoen}</th>
+                                ${objWork.rawData.Tafels.map(e => `<th colspan="2">Te maken<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
+                                ${objWork.rawData.Tafels.map(e => `<th colspan="2">Gespeeld<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
+                                ${objWork.rawData.Tafels.map(e => `<th colspan="2">Geschat volgend rooster<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
+                                <th colspan="2" style="font-size:1.3em">BV 't Waagje</th>
+                            </tr>
+                            <tr>
+                                <th>Pl</th><th style="text-align:left">Speler</th>
+                                ${objWork.rawData.Tafels.map(() => '<th>Moy</th><th>Car</th>').join('')}
+                                ${objWork.rawData.Tafels.map(() => '<th>Part</th><th>Pnt</th>').join('')}
+                                ${objWork.rawData.Tafels.map(() => '<th>Moy</th><th>Car</th>').join('')}
+                                <th>Part</th><th>Pnt</th>
+                            </tr>
+                        </thead>
+                        <tbody>`
         ],
     footers:
         [
-            '</div>',
+            '',
             (_record, objWork) =>
                 `</tbody></table>
                 <div style="width: 100%; height: 6px; background: repeating-linear-gradient(45deg, #17a2b8, #17a2b8 10px, #ffc107 10px, #ffc107 20px)"></div>
-                <div style="break-inside:avoid">${kstoolkit.createOutput(reportStatistieken)(objWork.rawData.statistieken)}</div>`
+                <div style="break-inside:avoid">${kstoolkit.createOutput(reportStatistieken)(objWork.rawData.statistieken)}</div>
+                </div>`
         ],
     display: (record, objWork) =>
         `<tr>
