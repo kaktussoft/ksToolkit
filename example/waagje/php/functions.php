@@ -13,7 +13,7 @@ class MyPDOStatement extends PDOStatement
 {
     public function custExecute($params = null): PDOStatement | false
     {
-        if (! parent::execute($params)) {
+        if (!parent::execute($params)) {
             return false;
         }
         return $this;
@@ -25,4 +25,5 @@ function sanitizeListMysql($list, $PDOcon)
     $values = explode(',', $list);
     $sanitizedValues = array_map([$PDOcon, 'quote'], $values);
     return implode(',', $sanitizedValues);
+
 }
