@@ -64,9 +64,10 @@ document.getElementById('nav-item-5').addEventListener('click', e => {
                     // found the target. Make the pressed button class 'active'
                     e.currentTarget.querySelector('button.active')?.classList.remove('active');
                     e.target.classList.add('active');
-                    kstoolkit.getServerDataMakeReportPutInElem('php/spelers_details.php', dbdata.reportSpelersDetails,
-                        baseElement.querySelector('#output2'), new URLSearchParams({ speler: e.target.textContent }))
-                        .then(() => { baseElement.querySelector('#output2').innerHTML ||= 'geen records gevonden!'; });
+                    kstoolkit.transferData('php/spelers_details.php', 'GET', new URLSearchParams({ speler: e.target.textContent }))
+                        .then(kstoolkit.processResponsePromise)
+                        .then(kstoolkit.createOutput(dbdata.reportSpelersDetails))
+                        .then(output => { baseElement.querySelector('#output2').innerHTML = output || 'geen records gevonden!'; });
                 }
             });
             if (isFirstRun) {
