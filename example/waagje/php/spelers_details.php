@@ -20,4 +20,5 @@ $sql = <<<EOT
                 ORDER BY B.Rooster,T.TafelNaam,B.Datum DESC,B.ID DESC
 EOT;
 $records = $PDOcon->prepare($sql)->custExecute(['speler' => $_GET['speler']])->fetchAll();
+header("Content-Type: application/json; charset=UTF-8");
 echo json_encode(['records' => $records, 'speler' => $_GET['speler']]);

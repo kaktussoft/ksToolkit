@@ -22,4 +22,5 @@ $sql = <<<EOT
     ORDER BY SS.v,SS.TafelNaam,SS.S1naam
 EOT;
 $records = $PDOcon->query($sql)->fetchAll();
+header("Content-Type: application/json; charset=UTF-8");
 echo json_encode($records);

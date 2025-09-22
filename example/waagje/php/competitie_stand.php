@@ -79,4 +79,5 @@ $sql_statistieken = <<<EOT
 EOT;
 $records      = $PDOcon->query($sql)->fetchAll();
 $statistieken = $PDOcon->query($sql_statistieken)->fetchAll();
+header("Content-Type: application/json; charset=UTF-8");
 echo json_encode(['records' => $records, 'statistieken' => $statistieken, 'Seizoen' => $seizoen, 'Tafels' => $Tafels]);

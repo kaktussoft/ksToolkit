@@ -1,5 +1,6 @@
 <?php
 include './functions.php';
+header("Content-Type: application/json; charset=UTF-8");
 if ($_POST['wachtwoord'] !== MANAGEMENTPWD) {
     die(json_encode(['error' => "Onjuist wachtwoord!"]));
 }

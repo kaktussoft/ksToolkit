@@ -30,4 +30,5 @@ $sql = <<<EOT
             ORDER BY X.v,X.TafelNaam,Pl,X.SpelersNaam
 EOT;
 $records = $PDOcon->query($sql)->fetchAll();
+header("Content-Type: application/json; charset=UTF-8");
 echo json_encode($records);

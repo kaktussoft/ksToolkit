@@ -25,5 +25,4 @@ function sanitizeListMysql($list, $PDOcon)
     $values = explode(',', $list);
     $sanitizedValues = array_map([$PDOcon, 'quote'], $values);
     return implode(',', $sanitizedValues);
-
 }
