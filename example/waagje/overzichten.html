@@ -26,7 +26,7 @@
         const fetchJSON = (...arg) => kstoolkit.transferData(...arg).then(kstoolkit.processResponsePromise);
         kstoolkit.embedFile('klant/koptekst.txt').then(text => { document.getElementById('koptekst').innerHTML = text; });
         const reportFilter = record => record.TafelNaam === 'Groot' && ['2', '3'].includes(record.Rooster);
-        // All record: const reportFilter = record => true
+        // All records: const reportFilter = record => true
         // Only table 'Klein' period 2: const reportFilter = record => record.TafelNaam === 'Klein' && record.Rooster === '2'
         // Only table 'Groot' periods 2 and 3: const reportFilter = record => record.TafelNaam === 'Groot' && ['2', '3'].includes(record.Rooster)
         // Filtering reportCompetitiestand by TafelNaam is not possible! Filtering by Rooster is pointless.
@@ -36,14 +36,14 @@
             fetchJSON('php/tespelen.php').then(kstoolkit.createOutput({ ...dbdata.reportNogTeSpelen, source: data => data.filter(reportFilter) })),
             fetchJSON('php/spelers_details.php?speler=Allemaal').then(kstoolkit.createOutput({ ...dbdata.reportSpelersDetails, source: data => data.records.filter(reportFilter) }))
         ])
-            .then(promises => { document.getElementById('rpt_items').innerHTML = promises.join(''); });
+            .then(promises => { document.getElementById('output').innerHTML = promises.join(''); });
     </script>
 </head>
 
 <body>
     <div class="container-fluid">
         <div id="koptekst" style="page-break-after:avoid;page-break-inside:avoid;"></div>
-        <div id="rpt_items"></div>
+        <div id="output"></div>
         <div>
             <b>Gemaakt door <a href="http://www.kaktussoft.nl/">www.kaktussoft.nl</a></b>
         </div>
