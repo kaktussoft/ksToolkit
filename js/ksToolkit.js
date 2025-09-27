@@ -85,8 +85,8 @@ export const processResponsePromise = ([response, err]) => {
     return response.json();
 };
 export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem, queryString = '', method = 'GET') => {
-    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise).then(createOutput(reportCfg));
-    Elem.innerHTML = data;
+    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise);
+    Elem.innerHTML = createOutput(reportCfg)(data);
 };
 export const navEvent = (e, navEventListener) => {
     e.preventDefault();
@@ -103,3 +103,4 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
