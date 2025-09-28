@@ -66,8 +66,10 @@ document.getElementById('nav-item-5').addEventListener('click', e => {
                     e.target.classList.add('active');
                     kstoolkit.transferData('php/spelers_details.php', 'GET', new URLSearchParams({ speler: e.target.textContent }))
                         .then(kstoolkit.processResponsePromise)
-                        .then(kstoolkit.createOutput(dbdata.reportSpelersDetails))
-                        .then(output => { baseElement.querySelector('#output2').innerHTML = output || 'geen records gevonden!'; });
+                        .then(data => {
+                            const output = kstoolkit.createOutput(dbdata.reportSpelersDetails)(data);
+                            baseElement.querySelector('#output2').innerHTML = output || 'geen records gevonden!';
+                        });
                 }
             });
             if (isFirstRun) {
