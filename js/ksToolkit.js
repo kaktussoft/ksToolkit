@@ -13,11 +13,11 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
     const generateSeparator = (record, separator, splitPosition) => (typeof separator === 'function') ? separator(record, objWork, splitPosition) : separator;
     init(objWork);
     const records = source(inputData, objWork);
-    const report = records.reduce((acc, currentRecord, index) => {
+    const report = records.reduce((acc, currentRecord, index, arr) => {
         const isFirstRecord = index === 0;
-        const previousRecord = records[index - 1];
+        const previousRecord = arr[index - 1];
         const groupLevel = isFirstRecord ? 0 : compare(previousRecord, currentRecord, objWork);
-        const isLastRecord = index === records.length - 1;
+        const isLastRecord = index === arr.length - 1;
         const isNewGroup = groupLevel !== -1;
         if (isNewGroup) {
             // only display footer if not first record
@@ -103,4 +103,5 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
 
