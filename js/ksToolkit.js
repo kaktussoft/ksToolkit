@@ -1,5 +1,6 @@
 // for details see https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 // createOutput function made by Ron Clarijs (ron.clarijs@gmail.com)
+const generateSeparator = (record, separator, splitPosition, objWork) => (typeof separator === 'function') ? separator(record, objWork, splitPosition) : separator);
 export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData => {
     // compare: compare function. (function arguments are previous record and current record).
     // display: function that displays the record (function argument is current record).
@@ -10,7 +11,6 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
     // source is function to preprocess inputData.
     const objWork = { ...objWorkOrig, rawData: inputData };
     const { compare = () => -1, display, footers = [], headers = [], init = () => { }, source = data => data } = reportDefinition;
-    const generateSeparator = (record, separator, splitPosition) => (typeof separator === 'function') ? separator(record, objWork, splitPosition) : separator;
     init(objWork);
     const records = source(inputData, objWork);
     const report = records.reduce((acc, currentRecord, index, arr) => {
@@ -27,12 +27,12 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
                 // headers/footers... they get 2, 3, and so on as third argument
                 // compute and add last footer down to and including grouplevel-footer
                 for (let i = footers.length - 1; i >= groupLevel; i--) {
-                    acc += generateSeparator(previousRecord, footers[i], i - groupLevel);
+                    acc += generateSeparator(previousRecord, footers[i], i - groupLevel, objWork);
                 }
             }
             // compute and add grouplevel-header up to and including last header
             for (let i = groupLevel; i < headers.length; i++) {
-                acc += generateSeparator(currentRecord, headers[i], i - groupLevel);
+                acc += generateSeparator(currentRecord, headers[i], i - groupLevel, objWork);
             }
         }
         acc += display(currentRecord, objWork);
@@ -103,5 +103,6 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
 
 
