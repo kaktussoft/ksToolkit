@@ -1,6 +1,6 @@
 // for details see https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 // createOutput function made by Ron Clarijs (ron.clarijs@gmail.com)
-const generateSeparator = (record, separator, splitPosition, objWork) => (typeof separator === 'function') ? separator(record, objWork, splitPosition) : separator);
+const generateSeparator = (record, separator, splitPosition, objWork) => (typeof separator === 'function') ? separator(record, objWork, splitPosition) : separator;
 export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData => {
     // compare: compare function. (function arguments are previous record and current record).
     // display: function that displays the record (function argument is current record).
@@ -103,6 +103,7 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
 
 
 
