@@ -39,7 +39,7 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
         if (isLastRecord) {
             // compute and add last footer down to and including footer 0
             for (let i = footers.length - 1; i >= 0; i--) {
-                acc += generateSeparator(currentRecord, footers[i], i);
+                acc += generateSeparator(currentRecord, footers[i], i, objWork);
             }
         }
         return acc;
@@ -103,6 +103,7 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
 
 
 
