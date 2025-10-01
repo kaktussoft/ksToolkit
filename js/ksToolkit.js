@@ -84,10 +84,12 @@ export const processResponsePromise = ([response, err]) => {
     }
     return response.json();
 };
-export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem, queryString = '', method = 'GET') => {
-    const data = await transferData(fetchUrl, method, queryString).then(processResponsePromise);
-    Elem.innerHTML = createOutput(reportCfg)(data);
-};
+export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem, queryString = '', method = 'GET') =>
+    transferData(fetchUrl, method, queryString).then(processResponsePromise)
+        .then(data => {
+            output = createOutput(reportCfg)(data);
+            Elem.innerHTML = createOutput(output);
+        });
 export const navEvent = (e, navEventListener) => {
     e.preventDefault();
     // find active link in the navigation bar and make it NOT active anymore
@@ -103,3 +105,4 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
