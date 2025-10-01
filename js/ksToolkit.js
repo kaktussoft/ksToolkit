@@ -87,7 +87,7 @@ export const processResponsePromise = ([response, err]) => {
 export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem, queryString = '', method = 'GET') =>
     transferData(fetchUrl, method, queryString).then(processResponsePromise)
         .then(data => {
-            output = createOutput(reportCfg)(data);
+            const output = createOutput(reportCfg)(data);
             Elem.innerHTML = output;
         });
 export const navEvent = (e, navEventListener) => {
@@ -105,5 +105,6 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
 
 
