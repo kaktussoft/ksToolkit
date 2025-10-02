@@ -84,13 +84,12 @@ export const processResponsePromise = ([response, err]) => {
     }
     return response.json();
 };
-export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem, queryString = '', method = 'GET') => {
+export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem, queryString = '', method = 'GET') =>
     transferData(fetchUrl, method, queryString).then(processResponsePromise)
         .then(data => {
             const output = createOutput(reportCfg)(data);
             Elem.innerHTML = output;
         });
-};
 
 export const navEvent = (e, navEventListener) => {
     e.preventDefault();
