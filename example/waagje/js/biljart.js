@@ -153,9 +153,9 @@ document.getElementById('nav-item-5').addEventListener('click', e => {
 document.getElementById('nav-item-8').addEventListener('click', e => {
     kstoolkit.navEvent(e, async () => {
         baseElement.innerHTML = await kstoolkit.embedFile('klant/informatie.txt');
-        //lib.getServerDataMakeReportPutInElem('php/informatie1.php', dbdata.reportInformatie1, baseElement.querySelector('#infotxt_1'), new URLSearchParams({ speler: 'Donny Daam' }), "POST");
-        //lib.getServerDataMakeReportPutInElem('php/informatie2.php', dbdata.reportInformatie2, baseElement.querySelector('#infotxt_2'), new URLSearchParams({ speler: 'Jan Mes' }), "POST");
-        //lib.getServerDataMakeReportPutInElem('php/informatie3.php', dbdata.reportInformatie3, baseElement.querySelector('#infotxt_3'), new URLSearchParams({ speler: 'Bert Spaansen' }), "POST");
+        //kstoolkit.getServerDataMakeReportPutInElem('php/informatie1.php', dbdata.reportInformatie1, baseElement.querySelector('#infotxt_1'), new URLSearchParams({ speler: 'Donny Daam' }), "POST");
+        //kstoolkit.getServerDataMakeReportPutInElem('php/informatie2.php', dbdata.reportInformatie2, baseElement.querySelector('#infotxt_2'), new URLSearchParams({ speler: 'Jan Mes' }), "POST");
+        //kstoolkit.getServerDataMakeReportPutInElem('php/informatie3.php', dbdata.reportInformatie3, baseElement.querySelector('#infotxt_3'), new URLSearchParams({ speler: 'Bert Spaansen' }), "POST");
         isFirstRun = false;
     });
 });
