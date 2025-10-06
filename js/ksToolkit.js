@@ -106,12 +106,3 @@ export const embedFile = async file => {
     }
     return response.text();
 };
-
-
-
-
-
-
-
-
-
