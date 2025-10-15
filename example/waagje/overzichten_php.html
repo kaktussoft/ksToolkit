@@ -31,7 +31,7 @@
             fetchJSON('php/tespelen.php?tafel=Groot&rooster=2')
         ])
             // Because we have an array of 2 promises, we have to 'flatten' the output. Also sort again afterwards.
-            .then(promises => promises.flat(1).sort((a, b) => (a.Rooster - b.Rooster) || a.TafelNaam.localeCompare(b.TafelNaam) || a.SpelersNaam.localeCompare(b.SpelersNaam)));
+            .then(results => results.flat(1).sort((a, b) => (a.Rooster - b.Rooster) || a.TafelNaam.localeCompare(b.TafelNaam) || a.SpelersNaam.localeCompare(b.SpelersNaam)));
         Promise.all([
             fetchJSON('php/stand.php?tafel=Klein,Groot&rooster=2,3').then(kstoolkit.createOutput(dbdata.reportStand)),
             fetchJSON('php/tespelen_matrix.php?tafel=Klein').then(kstoolkit.createOutput(dbdata.reportMatrix)),
@@ -40,7 +40,7 @@
             '<div style="width: 100%; height: 6px; background: repeating-linear-gradient(45deg, #17a2b8, #17a2b8 10px, #ffc107 10px, #ffc107 20px)"></div>',
             tespelenExtra.then(kstoolkit.createOutput(dbdata.reportNogTeSpelen))
         ])
-            .then(promises => { document.getElementById('output').innerHTML = promises.join(''); });
+            .then(results => { document.getElementById('output').innerHTML = results.join(''); });
     </script>
 </head>
 

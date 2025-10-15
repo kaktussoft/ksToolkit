@@ -36,7 +36,7 @@
             fetchJSON('php/tespelen.php').then(kstoolkit.createOutput({ ...dbdata.reportNogTeSpelen, source: data => data.filter(reportFilter) })),
             fetchJSON('php/spelers_details.php?speler=Allemaal').then(kstoolkit.createOutput({ ...dbdata.reportSpelersDetails, source: data => data.records.filter(reportFilter) }))
         ])
-            .then(promises => { document.getElementById('output').innerHTML = promises.join(''); });
+            .then(results => { document.getElementById('output').innerHTML = results.join(''); });
     </script>
 </head>
 
