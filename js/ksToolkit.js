@@ -105,5 +105,4 @@ export const embedFile = async file => {
         throw new Error(response.statusText);
     }
     return response.text();
-
 };
