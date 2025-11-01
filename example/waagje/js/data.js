@@ -22,9 +22,9 @@ export const reportCompetitiestand = {
                             </tr>
                             <tr>
                                 <th>Pl</th><th style="text-align:left">Speler</th>
-                                ${objWork.rawData.Tafels.map(() => '<th>Moy</th><th>Car</th>').join('')}
-                                ${objWork.rawData.Tafels.map(() => '<th>Part</th><th>Pnt</th>').join('')}
-                                ${objWork.rawData.Tafels.map(() => '<th>Moy</th><th>Car</th>').join('')}
+                                ${('<th>Moy</th><th>Car</th>').repeat(objWork.rawData.Tafels.length)}
+                                ${('<th>Part</th><th>Pnt</th>').repeat(objWork.rawData.Tafels.length)}
+                                ${('<th>Moy</th><th>Car</th>').repeat(objWork.rawData.Tafels.length)}
                                 <th>Part</th><th>Pnt</th>
                             </tr>
                         </thead>
