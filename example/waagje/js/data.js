@@ -22,9 +22,9 @@ export const reportCompetitiestand = {
                             </tr>
                             <tr>
                                 <th>Pl</th><th style="text-align:left">Speler</th>
-                                ${('<th>Moy</th><th>Car</th>').repeat(objWork.rawData.Tafels.length)}
-                                ${('<th>Part</th><th>Pnt</th>').repeat(objWork.rawData.Tafels.length)}
-                                ${('<th>Moy</th><th>Car</th>').repeat(objWork.rawData.Tafels.length)}
+                                ${'<th>Moy</th><th>Car</th>'.repeat(objWork.rawData.Tafels.length)}
+                                ${'<th>Part</th><th>Pnt</th>'.repeat(objWork.rawData.Tafels.length)}
+                                ${'<th>Moy</th><th>Car</th>'.repeat(objWork.rawData.Tafels.length)}
                                 <th>Part</th><th>Pnt</th>
                             </tr>
                         </thead>
