@@ -28,8 +28,8 @@ tr.border-top-color_red td {
 }
 
 body {
-    print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
 }
 
 .bootstrap-select .dropdown-item.active, .dropdown-item:active {
