@@ -49,7 +49,8 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
 // helper function for reportDefinition compare function
 export const GroupBy = (fields, level = 1) => (prv, cur) => {
     const index = fields.findIndex(field => cur[field] !== prv[field]);
-    return (index === -1) ? -1 : index + level;
+    if (index === -1) return -1;
+    return index + level;
 };
 export const transferData = async (url, mode = 'GET', data = '', requestOptions = {}) => {
     // use 'new URLSearchParams(data)' to convert plain javascript object to data we want
@@ -106,3 +107,4 @@ export const embedFile = async file => {
     }
     return response.text();
 };
+
