@@ -1,5 +1,5 @@
 # KaktusSoft Toolkit (javascript library)
-## function CreateOutput
+## function createOutput
 Documentation can be found on https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 ## function GroupBy
 Helper function for CreateOutput. See CreateOutput documentation.
