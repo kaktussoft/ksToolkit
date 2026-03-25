@@ -7,7 +7,7 @@ const weekPlayDay = dayOfWeek => {
     // Sunday - Saturday : 0 - 6
     const lastPlayDate = new Date();
     const daysOffset = dayOfWeek - lastPlayDate.getDay();
-    lastPlayDate.setDate(lastPlayDate.getDate() + (daysOffset + (daysOffset > 0 ? -7 : 0)));
+    lastPlayDate.setDate(lastPlayDate.getDate() + daysOffset + (daysOffset > 0 ? -7 : 0));
     const dateFormatter = new Intl.DateTimeFormat('nl-NL', {
         day: '2-digit',
         month: '2-digit',
