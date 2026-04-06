@@ -32,7 +32,7 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
             }
             // compute and add grouplevel-header up to and including last header
             for (let i = groupLevel; i < headers.length; i++) {
-                acc += generateSeparator(headers[i]. currentRecord, objWork, i - groupLevel);
+                acc += generateSeparator(headers[i], currentRecord, objWork, i - groupLevel);
             }
         }
         acc += display(currentRecord, objWork);
