@@ -26,19 +26,19 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
                 // headers/footers... they get 2, 3, and so on as third argument
                 // compute and add last footer down to and including grouplevel-footer
                 for (let i = footers.length - 1; i >= groupLevel; i--) {
-                    acc += (typeof footers[i] === 'function') ? (footers[i](previousRecord, objWork, i - groupLevel)) : footers[i];
+                    acc += (typeof footers[i] === 'function') ? footers[i](previousRecord, objWork, i - groupLevel) : footers[i];
                 }
             }
             // compute and add grouplevel-header up to and including last header
             for (let i = groupLevel; i < headers.length; i++) {
-                acc += (typeof headers[i] === 'function') ? (headers[i](currentRecord, objWork, i - groupLevel)) : headers[i];
+                acc += (typeof headers[i] === 'function') ? headers[i](currentRecord, objWork, i - groupLevel) : headers[i];
             }
         }
         acc += display(currentRecord, objWork);
         if (isLastRecord) {
             // compute and add last footer down to and including footer 0
             for (let i = footers.length - 1; i >= 0; i--) {
-                acc += (typeof footers[i] === 'function') ? (footers[i](currentRecord, objWork, i)) : footers[i];
+                acc += (typeof footers[i] === 'function') ? footers[i](currentRecord, objWork, i) : footers[i];
             }
         }
         return acc;
