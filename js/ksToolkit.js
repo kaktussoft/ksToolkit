@@ -10,10 +10,10 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
     // source is function to preprocess inputData.
     const objWork = { ...objWorkOrig, rawData: inputData };
     const { compare = () => -1, display, footers = [], headers = [], init, source } = reportDefinition;
-    if (init) {
+    if (typeof init === 'function') {
         init(objWork);
     }
-    const records = source ? source(inputData, objWork) : inputData;
+    const records = (typeof source === 'function') ? source(inputData, objWork) : inputData;
     const report = records.reduce((acc, currentRecord, index, arr) => {
         const isFirstRecord = index === 0;
         const previousRecord = arr[index - 1];
