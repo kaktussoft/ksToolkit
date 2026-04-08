@@ -9,7 +9,7 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
     // headers and footers have a third argument. It is the relative breakpoint to 'groupLevel'.
     // source is function to preprocess inputData.
     const objWork = { ...objWorkOrig, rawData: inputData };
-    const { compare = () => -1, display, footers = [], headers = [], init , source } = reportDefinition;
+    const { compare = () => -1, display, footers = [], headers = [], init, source } = reportDefinition;
     if (init) {
         init(objWork);
     }
