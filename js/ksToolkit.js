@@ -90,7 +90,6 @@ export const getServerDataMakeReportPutInElem = async (fetchUrl, reportCfg, Elem
             const output = createOutput(reportCfg)(data);
             Elem.innerHTML = output;
         });
-
 export const navEvent = (e, navEventListener) => {
     e.preventDefault();
     // find active link in the navigation bar and make it NOT active anymore
