@@ -9,11 +9,9 @@ export const createOutput = (reportDefinition, objWorkOrig = {}) => inputData =>
     // headers and footers have a third argument. It is the relative breakpoint to 'groupLevel'.
     // source is function to preprocess inputData.
     const objWork = { ...objWorkOrig, rawData: inputData };
-    const { compare = () => -1, display, footers = [], headers = [], init, source } = reportDefinition;
-    if (typeof init === 'function') {
-        init(objWork);
-    }
-    const records = (typeof source === 'function') ? source(inputData, objWork) : inputData;
+    const { compare = () => -1, display, footers = [], headers = [], init = () => { }, source = data => data } = reportDefinition;
+    init(objWork);
+    const records = source(inputData, objWork);
     const report = records.reduce((acc, currentRecord, index, arr) => {
         const isFirstRecord = index === 0;
         const previousRecord = arr[index - 1];
@@ -108,4 +106,3 @@ export const embedFile = async file => {
     }
     return response.text();
 };
-
