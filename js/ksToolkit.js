@@ -1,6 +1,6 @@
 // for details see https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 // createOutput function made by Ron Clarijs (ron.clarijs@gmail.com)
-export const createOutput = (reportDefinition, stateOrig = {}) => inputData => {
+export const createOutput = (reportDefinition, initialState = {}) => inputData => {
     // compare: compare function. (function arguments are previous record and current record).
     // display: function that displays the record (function argument is current record).
     // footers: array of footers. Footer can be a function (function argument is previous record).
@@ -8,7 +8,7 @@ export const createOutput = (reportDefinition, stateOrig = {}) => inputData => {
     // state: extra object passed to compare, display, headers, footers, init and source.
     // headers and footers have a third argument. It is the relative breakpoint to 'groupLevel'.
     // source is function to preprocess inputData.
-    const state = { ...stateOrig, rawData: inputData };
+    const state = { ...initialState, rawData: inputData };
     const { compare = () => -1, display, footers = [], headers = [], init = () => { }, source = data => data } = reportDefinition;
     init(state);
     const records = source(inputData, state);
