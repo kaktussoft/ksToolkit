@@ -1,6 +1,6 @@
 // for details see https://dev.to/ron_clarijs/create-data-reports-using-javascript-function-15dc
 // createOutput function made by Ron Clarijs (ron.clarijs@gmail.com)
-export const createOutput = (reportDefinition, initialState = {}) => inputData => {
+export const createOutput = (reportDefinition, stateOrig = {}) => inputData => {
     // compare: compare function. (function arguments are previous record and current record).
     // display: function that displays the record (function argument is current record).
     // footers: array of footers. Footer can be a function (function argument is previous record).
@@ -8,17 +8,16 @@ export const createOutput = (reportDefinition, initialState = {}) => inputData =
     // state: extra object passed to compare, display, headers, footers, init and source.
     // headers and footers have a third argument. It is the relative breakpoint to 'groupLevel'.
     // source is function to preprocess inputData.
-    const state = { ...initialState, rawData: inputData };
+    const state = { ...stateOrig, rawData: inputData };
     const { compare = () => -1, display, footers = [], headers = [], init = () => { }, source = data => data } = reportDefinition;
     init(state);
     const records = source(inputData, state);
-    const report = records.map((currentRecord, index, arr) => {
+    const report = records.reduce((acc, currentRecord, index, arr) => {
         const isFirstRecord = index === 0;
         const isLastRecord = index === arr.length - 1;
         const previousRecord = arr[index - 1];
         const groupLevel = isFirstRecord ? 0 : compare(previousRecord, currentRecord, state);
         const isNewGroup = groupLevel !== -1;
-        const acc = [];
         if (isNewGroup) {
             // only display footer if not first record
             if (!isFirstRecord) {
@@ -27,24 +26,24 @@ export const createOutput = (reportDefinition, initialState = {}) => inputData =
                 // headers/footers... they get 2, 3, and so on as third argument
                 // compute and add last footer down to and including grouplevel-footer
                 for (let i = footers.length - 1; i >= groupLevel; i--) {
-                    acc.push((typeof footers[i] === 'function') ? footers[i](previousRecord, state, i - groupLevel) : footers[i]);
+                    acc += (typeof footers[i] === 'function') ? footers[i](previousRecord, state, i - groupLevel) : footers[i];
                 }
             }
             // compute and add grouplevel-header up to and including last header
             for (let i = groupLevel; i < headers.length; i++) {
-                acc.push((typeof headers[i] === 'function') ? headers[i](currentRecord, state, i - groupLevel) : headers[i]);
+                acc += (typeof headers[i] === 'function') ? headers[i](currentRecord, state, i - groupLevel) : headers[i];
             }
         }
-        acc.push(display(currentRecord, state));
+        acc += display(currentRecord, state);
         if (isLastRecord) {
             // compute and add last footer down to and including footer 0
             for (let i = footers.length - 1; i >= 0; i--) {
-                acc.push((typeof footers[i] === 'function') ? footers[i](currentRecord, state, i) : footers[i]);
+                acc += (typeof footers[i] === 'function') ? footers[i](currentRecord, state, i) : footers[i];
             }
         }
         return acc;
-    });
-    return report.join('');
+    }, '');
+    return report;
 };
 // helper function for reportDefinition compare function
 export const GroupBy = (fields, level = 1) => (prv, cur) => {
