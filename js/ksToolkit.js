@@ -12,13 +12,13 @@ export const createOutput = (reportDefinition, initialState = {}) => inputData =
     const { compare = () => -1, display, footers = [], headers = [], init = () => { }, source = data => data } = reportDefinition;
     init(state);
     const records = source(inputData, state);
-    const report = records.map((acc, currentRecord, index, arr) => {
+    const report = records.map((currentRecord, index, arr) => {
         const isFirstRecord = index === 0;
         const isLastRecord = index === arr.length - 1;
         const previousRecord = arr[index - 1];
         const groupLevel = isFirstRecord ? 0 : compare(previousRecord, currentRecord, state);
         const isNewGroup = groupLevel !== -1;
-        let acc = [];
+        const acc = [];
         if (isNewGroup) {
             // only display footer if not first record
             if (!isFirstRecord) {
