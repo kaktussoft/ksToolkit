@@ -18,7 +18,7 @@ export const createOutput = (reportDefinition, initialState = {}) => inputData =
         const previousRecord = arr[index - 1];
         const groupLevel = isFirstRecord ? 0 : compare(previousRecord, currentRecord, state);
         const isNewGroup = groupLevel !== -1;
-        let acc = [];
+        const acc = [];
         if (isNewGroup) {
             // only display footer if not first record
             if (!isFirstRecord) {
@@ -35,7 +35,7 @@ export const createOutput = (reportDefinition, initialState = {}) => inputData =
                 acc.push((typeof headers[i] === 'function') ? headers[i](currentRecord, state, i - groupLevel) : headers[i]);
             }
         }
-        acc.push(display(currentRecord, state);
+        acc.push(display(currentRecord, state));
         if (isLastRecord) {
             // compute and add last footer down to and including footer 0
             for (let i = footers.length - 1; i >= 0; i--) {
