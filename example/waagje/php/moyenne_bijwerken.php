@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 if ($_POST['wachtwoord'] !== MANAGEMENTPWD) {
     die(json_encode(['error' => "Onjuist wachtwoord!"]));
 }
-$spelersList = implode(',', array_map([$PDOcon, 'quote'], $_POST['spelers'] ??= ['']));
+$spelersList = implode(',', array_map(fn($str) => $PDOcon->quote($str), $_POST['spelers'] ??= ['']));
 $sql = <<<EOT
     UPDATE Moyennes M JOIN (SELECT TafelID,SpelerID,GREATEST(1,ROUND(SUM(Car)/SUM(Beurten)/0.05)*0.05) AS GMoy
         FROM (SELECT SO.* FROM SpelersOverzicht SO
