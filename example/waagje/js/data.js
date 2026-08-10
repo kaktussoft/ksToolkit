@@ -9,22 +9,22 @@ export const reportCompetitiestand = {
     headers:
         [
             '<h1 style="page-break-after:avoid">Competitiestand</h1>',
-            (_record, objWork) =>
+            (_record, state) =>
                 `<div style="display:inline-block">
                     <table class="table table-sm table-nonfluid table-striped table-bordered table-hover" style="text-align:right">
                         <thead class="bg-info text-white">
                             <tr style="text-align:center">
-                                <th colspan="2" style="font-size:1.3em">Seizoen ${objWork.rawData.Seizoen}</th>
-                                ${objWork.rawData.Tafels.map(e => `<th colspan="2">Te maken<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
-                                ${objWork.rawData.Tafels.map(e => `<th colspan="2">Gespeeld<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
-                                ${objWork.rawData.Tafels.map(e => `<th colspan="2">Geschat volgend rooster<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
+                                <th colspan="2" style="font-size:1.3em">Seizoen ${state.rawData.Seizoen}</th>
+                                ${state.rawData.Tafels.map(e => `<th colspan="2">Te maken<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
+                                ${state.rawData.Tafels.map(e => `<th colspan="2">Gespeeld<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
+                                ${state.rawData.Tafels.map(e => `<th colspan="2">Geschat volgend rooster<br>${kstoolkit.htmlSanitize(e.TafelNaam)} biljart</th>`).join('')}
                                 <th colspan="2" style="font-size:1.3em">BV 't Waagje</th>
                             </tr>
                             <tr>
                                 <th>Pl</th><th style="text-align:left">Speler</th>
-                                ${'<th>Moy</th><th>Car</th>'.repeat(objWork.rawData.Tafels.length)}
-                                ${'<th>Part</th><th>Pnt</th>'.repeat(objWork.rawData.Tafels.length)}
-                                ${'<th>Moy</th><th>Car</th>'.repeat(objWork.rawData.Tafels.length)}
+                                ${'<th>Moy</th><th>Car</th>'.repeat(state.rawData.Tafels.length)}
+                                ${'<th>Part</th><th>Pnt</th>'.repeat(state.rawData.Tafels.length)}
+                                ${'<th>Moy</th><th>Car</th>'.repeat(state.rawData.Tafels.length)}
                                 <th>Part</th><th>Pnt</th>
                             </tr>
                         </thead>
@@ -33,19 +33,19 @@ export const reportCompetitiestand = {
     footers:
         [
             '',
-            (_record, objWork) =>
+            (_record, state) =>
                 `</tbody></table>
                 <div style="width: 100%; height: 6px; background: repeating-linear-gradient(45deg, #17a2b8, #17a2b8 10px, #ffc107 10px, #ffc107 20px)"></div>
-                <div style="break-inside:avoid">${kstoolkit.createOutput(reportStatistieken)(objWork.rawData.statistieken)}</div>
+                <div style="break-inside:avoid">${kstoolkit.createOutput(reportStatistieken)(state.rawData.statistieken)}</div>
                 </div>`
         ],
-    display: (record, objWork) =>
+    display: (record, state) =>
         `<tr>
             <td>${record.Pl}</td>
             <td style="white-space:nowrap;text-align:left"><span class="spelerLink ${record.Actief === '0' ? 'text-danger' : ''}">${kstoolkit.htmlSanitize(record.SpelersNaam)}</span></td>       
-            ${objWork.rawData.Tafels.map(e => `<td>${record[`Moy${e.ID}`].replace(/\./g, ',')}</td><td>${record[`Car${e.ID}`]}</td>`).join('')}
-            ${objWork.rawData.Tafels.map(e => `<td>${record[`AantalPar${e.ID}`].replace(/\./g, ',')}</td><td>${record[`sumPartijP${e.ID}`]}</td>`).join('')}
-            ${objWork.rawData.Tafels.map(e => `<td>${record[`GMoy${e.ID}`].replace(/\./g, ',')}</td><td>${record[`GCar${e.ID}`]}</td>`).join('')}
+            ${state.rawData.Tafels.map(e => `<td>${record[`Moy${e.ID}`].replace(/\./g, ',')}</td><td>${record[`Car${e.ID}`]}</td>`).join('')}
+            ${state.rawData.Tafels.map(e => `<td>${record[`AantalPar${e.ID}`].replace(/\./g, ',')}</td><td>${record[`sumPartijP${e.ID}`]}</td>`).join('')}
+            ${state.rawData.Tafels.map(e => `<td>${record[`GMoy${e.ID}`].replace(/\./g, ',')}</td><td>${record[`GCar${e.ID}`]}</td>`).join('')}
             <td>${record.AantalParTot}</td><td>${record.PartijPTot}</td>
         </tr>`
 };
@@ -93,7 +93,7 @@ export const reportStand = {
         `<tr>
             <td>${record.Pl}</td>
             <td style="white-space:nowrap;text-align:left"><span class="spelerLink ${record.Actief === '0' ? 'text-danger' : ''}">${kstoolkit.htmlSanitize(record.SpelersNaam)}</span></td>
-            <td>${record.Moyenne.replace(/\./g, ',')}</td><td>${record.Car}</td><td>${record.GespMoy.replace(/\./g, ',')}</td><td>${record.newCar}</td>
+            <td>${record.Moyenne?.replace(/\./g, ',') ?? null}</td><td>${record.Car}</td><td>${record.GespMoy.replace(/\./g, ',')}</td><td>${record.newCar}</td>
             <td>${record.sumCar}</td><td>${record.sumBeurten}</td><td>${record.maxHS}</td><td>${record.minBeurten}</td><td>${record.maxBeurten}</td>
             <td>${record.maxMoy.replace(/\./g, ',')}</td><td>${record.minMoy.replace(/\./g, ',')}</td><td>${record.AantalPar}</td><td>${record.sumPartijP}</td>
         </tr>`
@@ -122,12 +122,12 @@ export const reportNogTeSpelen = {
         </tr>`
 };
 export const reportMatrix = {
-    init: objWork => {
-        objWork.matrixHeader = '';
-        const firstRecord = objWork.rawData[0];
-        for (const record of objWork.rawData) {
+    init: state => {
+        state.matrixHeader = '';
+        const firstRecord = state.rawData[0];
+        for (const record of state.rawData) {
             if (defaultGrouping(firstRecord, record) !== -1) break;
-            objWork.matrixHeader += `<th class="vertical-text" style="vertical-align:top">${kstoolkit.htmlSanitize(record.S1naam)}</th>`;
+            state.matrixHeader += `<th class="vertical-text" style="vertical-align:top">${kstoolkit.htmlSanitize(record.S1naam)}</th>`;
         }
     },
     compare: defaultGrouping,
@@ -135,13 +135,13 @@ export const reportMatrix = {
         [
             '<h1 style="page-break-after:avoid">Matrixoverzicht</h1>',
             record => `<h2 class="text-danger">Rooster ${record.Rooster}</h2><div style="display:flex;flex-wrap:wrap;gap:1em">`,
-            (record, objWork) =>
+            (record, state) =>
                 `<div style="break-inside:avoid">
                     <h4>Tafel ${kstoolkit.htmlSanitize(record.TafelNaam)}</h4>
                     <table class="table table-sm table-nonfluid table-striped table-bordered table-hover" style="text-align:right">
                         <thead class="bg-info text-white">
                             <tr style="text-align:left">
-                                <th>Speler</th><th style="text-align:right">#</th>${objWork.matrixHeader}
+                                <th>Speler</th><th style="text-align:right">#</th>${state.matrixHeader}
                             </tr>
                         </thead>
                         <tbody>`
@@ -176,7 +176,7 @@ export const reportSpelersDetails = {
     compare: defaultGrouping,
     headers:
         [
-            (_record, objWork) => `<h1 style="page-break-after:avoid">Uitslagen - ${kstoolkit.htmlSanitize(objWork.rawData.speler)}</h1>`,
+            (_record, state) => `<h1 style="page-break-after:avoid">Uitslagen - ${kstoolkit.htmlSanitize(state.rawData.speler)}</h1>`,
             record => `<h2 class="text-danger">Rooster ${record.Rooster}</h2>`,
             record =>
                 `<div style="break-inside:avoid">
