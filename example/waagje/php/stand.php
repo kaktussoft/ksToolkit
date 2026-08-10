@@ -5,10 +5,10 @@ $PDOcon->exec("set div_precision_increment = 3");
 //Criteria
 $where = ['TRUE'];
 if (isset($_GET['tafel'])) {
-    $where[] = 'X.TafelNaam IN (' . sanitizeListMysql($_GET['tafel'], $PDOcon) . ')';
+    $where[] = 'X.TafelNaam IN (' . sanitizeListMysql($_GET['tafel']) . ')';
 }
 if (isset($_GET['rooster'])) {
-    $where[] = 'X.v IN (' . sanitizeListMysql($_GET['rooster'], $PDOcon)  . ')';
+    $where[] = 'X.v IN (' . sanitizeListMysql($_GET['rooster'])  . ')';
 }
 $criteria = implode(' AND ', $where);
 $sql = <<<EOT

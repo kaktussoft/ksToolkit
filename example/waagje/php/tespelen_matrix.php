@@ -4,10 +4,10 @@ $PDOcon = connectToDatabase();
 //Criteria
 $where = ['TRUE'];
 if (isset($_GET['tafel'])) {
-    $where[] = 'SS.TafelNaam IN (' . sanitizeListMysql($_GET['tafel'], $PDOcon) . ')';
+    $where[] = 'SS.TafelNaam IN (' . sanitizeListMysql($_GET['tafel']) . ')';
 }
 if (isset($_GET['rooster'])) {
-    $where[] = 'SS.v IN (' . sanitizeListMysql($_GET['rooster'], $PDOcon) . ')';
+    $where[] = 'SS.v IN (' . sanitizeListMysql($_GET['rooster']) . ')';
 }
 $criteria = implode(' AND ', $where);
 $sql = <<<EOT
