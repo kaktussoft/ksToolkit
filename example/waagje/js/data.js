@@ -93,7 +93,7 @@ export const reportStand = {
         `<tr>
             <td>${record.Pl}</td>
             <td style="white-space:nowrap;text-align:left"><span class="spelerLink ${record.Actief === '0' ? 'text-danger' : ''}">${kstoolkit.htmlSanitize(record.SpelersNaam)}</span></td>
-            <td>${record.Moyenne?.replace(/\./g, ',') ?? null}</td><td>${record.Car}</td><td>${record.GespMoy.replace(/\./g, ',')}</td><td>${record.newCar}</td>
+            <td>${record.Moyenne.replace(/\./g, ',')}</td><td>${record.Car}</td><td>${record.GespMoy.replace(/\./g, ',')}</td><td>${record.newCar}</td>
             <td>${record.sumCar}</td><td>${record.sumBeurten}</td><td>${record.maxHS}</td><td>${record.minBeurten}</td><td>${record.maxBeurten}</td>
             <td>${record.maxMoy.replace(/\./g, ',')}</td><td>${record.minMoy.replace(/\./g, ',')}</td><td>${record.AantalPar}</td><td>${record.sumPartijP}</td>
         </tr>`
